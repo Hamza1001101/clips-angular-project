@@ -1,0 +1,23 @@
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { ModalService } from 'src/app/services/modal.service';
+
+@Component({
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.scss'],
+})
+export class ModalComponent implements OnInit {
+  constructor(public modal: ModalService, public el: ElementRef) {}
+
+  @Input()
+  modalID = '';
+
+  ngOnInit(): void {
+    //disconnected the modal from the application.
+    document.body.appendChild(this.el.nativeElement);
+  }
+
+  closeModal() {
+    this.modal.toggleModal(this.modalID);
+  }
+}
