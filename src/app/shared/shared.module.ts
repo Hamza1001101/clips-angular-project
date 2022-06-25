@@ -5,7 +5,8 @@ import { TabcontainerComponent } from './tabcontainer/tabcontainer.component';
 import { TabComponent } from './tab/tab.component';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
-//import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -13,13 +14,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     TabcontainerComponent,
     TabComponent,
     InputComponent,
+    AlertComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgxMaskModule.forRoot()],
   exports: [
     ModalComponent,
     TabcontainerComponent,
     TabComponent,
     InputComponent,
+    AlertComponent,
   ],
   //providers: [ModalService], //Array of services. Injecting manually
 })

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -7,21 +11,32 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  name = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  email = new FormControl('', [Validators.required, Validators.email]);
-  age = new FormControl('', [
+  showAlert = false;
+  alertMsg = 'Please wait! Your account is being created';
+  alertColor = 'blue';
+
+  name = new UntypedFormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+  ]);
+  email = new UntypedFormControl('', [Validators.required, Validators.email]);
+  age = new UntypedFormControl('', [
     Validators.required,
     Validators.min(18),
     Validators.max(120),
   ]);
-  password = new FormControl('', [
+  password = new UntypedFormControl('', [
     Validators.required,
     Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm),
   ]);
-  confirm_passowrd = new FormControl('', [Validators.required]);
-  phoneNumber = new FormControl('');
+  confirm_passowrd = new UntypedFormControl('', [Validators.required]);
+  phoneNumber = new UntypedFormControl('', [
+    Validators.required,
+    Validators.maxLength(13),
+    Validators.minLength(10),
+  ]);
 
-  registerForm = new FormGroup({
+  registerForm = new UntypedFormGroup({
     name: this.name,
     email: this.email,
     age: this.age,
@@ -29,4 +44,11 @@ export class RegisterComponent {
     confirm_passowrd: this.confirm_passowrd,
     phoneNumber: this.phoneNumber,
   });
+
+  register() {
+    this.showAlert = true;
+    this.alertMsg = 'Please wait! Your account is being created';
+    this.alertColor = 'blue';
+    console.log('register called!', this.registerForm);
+  }
 }
