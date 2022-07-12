@@ -12,7 +12,7 @@ export class AlertComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get bgColor() {
+  get bgColor() { 
     return `bg-${this.color}-400`;
   }
 }
